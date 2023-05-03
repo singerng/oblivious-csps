@@ -1,3 +1,11 @@
+"""
+Clause bias patterns for Max-kAND
+
+By Noah Singer <ngsinger@cs.cmu.edu>, May 2023
+"""
+
+import scipy as sp
+
 class Pattern():
     def __init__(self, k, l, c):
         self.k = k
@@ -32,7 +40,7 @@ class Pattern():
         for i in range(1,self.l+1):
             result *= p[i-1]**(self[+1,+i]+self[-1,-i])
             if self[-1,+i] or self[+1,-i]:
-                result *= (1-p[i-1])**(self[+1,+i]+self[-1,-i])
+                result *= (1-p[i-1])**(self[-1,+i]+self[+1,-i])
         return result
 
 # based loosely on https://stackoverflow.com/questions/10035752/elegant-python-code-for-integer-partitioning
@@ -44,6 +52,8 @@ def partition_generator(k, L):
             for c in partition_generator(k-i,L-1):
                 yield (i,) + c
 
-def patterns(k, l):
+def enum_patterns(k, l):
     L = 2*l+1
-    return [Pattern(k, l, c) for c in partition_generator(k, 2*L)]
+    patterns = [Pattern(k, l, c) for c in partition_generator(k, 2*L)]
+    assert len(patterns) == sp.special.binom(k+2*L-1,2*L-1)
+    return patterns
