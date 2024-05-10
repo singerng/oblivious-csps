@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class FiveClassIntervalGenerator {
+public class AntisymmetricBoundGenerator {
     public static double frac(int x)  {
         if(x / 10 == 0)  {
             return Double.parseDouble("0.0" + x);
