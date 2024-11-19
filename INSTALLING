@@ -1,0 +1,5 @@
+Requires `cvxpy`, `cvxopt` with `glpk`
+
+Needs `glpk` python package - run `export CFLAGS="-I/opt/homebrew/include` before installing `glpk` via `pip`
+
+Before installing `cvxpy`/`cvxopt` via `pip`, run `export CVXOPT_BUILD_GLPK=1`

@@ -19,12 +19,13 @@ def ivl_bound(t, sgn, i):
     else:
         return -t[-i-1+(1-sgn)//2]
 
-def build_pattern_dict(k, l):
+def build_pattern_dict(k, l, log=True):
     """
     Build a dictionary mapping 'patterns' to nonnegative integers, to
     use as indexes into vector of LP variables.
     """
-    print("Building pattern dictionary for k={}, l={}".format(k, l))
+    if log:
+        print("Building pattern dictionary for k={}, l={}".format(k, l))
     n = 0
     patterns = {}
     for pattern in enum_patterns(k, l):
@@ -32,7 +33,7 @@ def build_pattern_dict(k, l):
         n += 1
     return patterns
 
-def primal_lp(k, l, t, p, solver=cp.GLPK, verbose=False, patterns=None):
+def primal_lp(k, l, t, p, solver=cp.GLPK, verbose=False, patterns=None, log=True):
     """
     Construct and solve the primal factor-revealing LP for the Max-kAND
     oblivious algorithm with L=2*l+1 bias classes, bias partition t,
@@ -41,10 +42,11 @@ def primal_lp(k, l, t, p, solver=cp.GLPK, verbose=False, patterns=None):
     assert len(t) == l+1
     assert len(p) == l
 
-    print("="*40)
+    if log:
+        print("="*40)
 
     if not patterns: # pattern dictionary can be cached
-        patterns = build_pattern_dict(k, l)
+        patterns = build_pattern_dict(k, l, log=log)
     n = len(patterns)
     W = cp.Variable(n)
 
@@ -71,7 +73,10 @@ def primal_lp(k, l, t, p, solver=cp.GLPK, verbose=False, patterns=None):
 
     constraints = [nonneg_constraints, opt_constraint] + bias_constraints
 
-    print("Solving LP with {} variables and {} constraints".format(n, len(constraints)))
+    if log:
+        print("Solving LP with {} variables and {} constraints".format(n, len(constraints)))
     factor = cp.Problem(cp.Minimize(objective), constraints).solve(solver=solver, verbose=verbose)
-    print("="*40)
+    
+    if log:
+        print("="*40)
     return factor
