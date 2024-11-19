@@ -1,0 +1,3583 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* Created By: SaveReadableNotebook *)
+(* https://resources.wolframcloud.com/FunctionRepository/resources/SaveReadableNotebook *)
+
+Notebook[
+ {
+  Cell[BoxData[RowBox[{"On", "[", "Assert", "]"}]], "Input"],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      RowBox[
+       {
+        "Compute",
+        " ",
+        "the",
+        " ",
+        "bias",
+        " ",
+        "for",
+        " ",
+        "class",
+        " ",
+        "`i`"
+       }
+      ],
+      " ",
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"bias", "[", "i_", "]"}],
+      ":=",
+      RowBox[
+       {
+        "(",
+        RowBox[
+         {
+          RowBox[
+           {"Assert", "[", RowBox[{"1", "<=", "i", "<=", "20"}], "]"}
+          ],
+          ";",
+          RowBox[
+           {
+            RowBox[{RowBox[{"-", "19"}], "/", "40"}],
+            "+",
+            RowBox[
+             {
+              RowBox[{"(", RowBox[{"i", "-", "1"}], ")"}],
+              "*",
+              RowBox[{"5", "/", "100"}]
+             }
+            ]
+           }
+          ]
+         }
+        ],
+        ")"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      RowBox[
+       {
+        RowBox[{"bias", "[", "i_", "]"}],
+        ":=",
+        RowBox[
+         {
+          RowBox[{RowBox[{"-", "19"}], "/", "40"}],
+          "+",
+          RowBox[
+           {
+            RowBox[{"(", RowBox[{"i", "-", "1"}], ")"}],
+            "*",
+            RowBox[{"5", "/", "100"}]
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "Table",
+         "[",
+         RowBox[
+          {
+           RowBox[{"bias", "[", "i", "]"}],
+           ",",
+           RowBox[{"{", RowBox[{"i", ",", "1", ",", "20"}], "}"}]
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           RowBox[{"-", FractionBox["19", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["17", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["3", "8"]}],
+           ",",
+           RowBox[{"-", FractionBox["13", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["11", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["9", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["7", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["1", "8"]}],
+           ",",
+           RowBox[{"-", FractionBox["3", "40"]}],
+           ",",
+           RowBox[{"-", FractionBox["1", "40"]}],
+           ",",
+           FractionBox["1", "40"],
+           ",",
+           FractionBox["3", "40"],
+           ",",
+           FractionBox["1", "8"],
+           ",",
+           FractionBox["7", "40"],
+           ",",
+           FractionBox["9", "40"],
+           ",",
+           FractionBox["11", "40"],
+           ",",
+           FractionBox["13", "40"],
+           ",",
+           FractionBox["3", "8"],
+           ",",
+           FractionBox["17", "40"],
+           ",",
+           FractionBox["19", "40"]
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{RowBox[{"bias", "[", "20", "]"}], "//", "N"}]
+      ],
+      "Input"
+     ],
+     Cell[BoxData["0.475`"], "Output"]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[BoxData[RowBox[{"baseValue", "=", "1"}]], "Input"],
+     Cell[BoxData["1"], "Output"]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      " ",
+      RowBox[
+       {
+        "build",
+        " ",
+        "the",
+        " ",
+        "table",
+        " ",
+        "of",
+        " ",
+        "weights",
+        " ",
+        "in",
+        " ",
+        "the",
+        " ",
+        "graph"
+       }
+      ],
+      " ",
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "weights",
+         "=",
+         RowBox[
+          {
+           "<|",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "12"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "9"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "->",
+             "baseValue"
+            }
+           ],
+           "|>"
+          }
+         ]
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "\[LeftAssociation]",
+         RowBox[
+          {
+           RowBox[
+            {
+             "{",
+             RowBox[
+              {
+               RowBox[{"{", RowBox[{"1", ",", "12"}], "}"}],
+               ",",
+               RowBox[{"{", RowBox[{"0", ",", "9"}], "}"}]
+              }
+             ],
+             "}"
+            }
+           ],
+           "\[Rule]",
+           "1"
+          }
+         ],
+         "\[RightAssociation]"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[RowBox[{"redWeights", "=", RowBox[{"{", "}"}]}]],
+      "Input"
+     ],
+     Cell[BoxData[RowBox[{"{", "}"}]], "Output"]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {"blueWeights", "=", RowBox[{"{", "baseValue", "}"}]}
+       ]
+      ],
+      "Input"
+     ],
+     Cell[BoxData[RowBox[{"{", "1", "}"}]], "Output"]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Do",
+      "[",
+      RowBox[
+       {
+        RowBox[
+         {
+          "(",
+          "\[IndentingNewLine]",
+          RowBox[
+           {
+            RowBox[
+             {
+              "AppendTo",
+              "[",
+              RowBox[
+               {
+                "redWeights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[{"blueWeights", "[", RowBox[{"[", "i", "]"}], "]"}],
+                  "*",
+                  FractionBox[
+                   RowBox[
+                    {
+                     "1",
+                     "+",
+                     RowBox[{"bias", "[", RowBox[{"10", "-", "i"}], "]"}]
+                    }
+                   ],
+                   RowBox[
+                    {
+                     "1",
+                     "-",
+                     RowBox[{"bias", "[", RowBox[{"10", "-", "i"}], "]"}]
+                    }
+                   ]
+                  ]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";",
+            "\[IndentingNewLine]",
+            RowBox[
+             {
+              "AppendTo",
+              "[",
+              RowBox[
+               {
+                "blueWeights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[{"redWeights", "[", RowBox[{"[", "i", "]"}], "]"}],
+                  "*",
+                  FractionBox[
+                   RowBox[
+                    {
+                     "1",
+                     "+",
+                     RowBox[{"bias", "[", RowBox[{"12", "-", "i"}], "]"}]
+                    }
+                   ],
+                   RowBox[
+                    {
+                     "1",
+                     "-",
+                     RowBox[{"bias", "[", RowBox[{"12", "-", "i"}], "]"}]
+                    }
+                   ]
+                  ]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";"
+           }
+          ],
+          "\[IndentingNewLine]",
+          ")"
+         }
+        ],
+        ",",
+        RowBox[{"{", RowBox[{"i", ",", "8"}], "}"}]
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[BoxData["redWeights"], "Input"],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           FractionBox["37", "43"],
+           ",",
+           FractionBox["10619", "15093"],
+           ",",
+           FractionBox["2849", "6063"],
+           ",",
+           FractionBox["466829", "1824963"],
+           ",",
+           FractionBox["13538041", "119665431"],
+           ",",
+           FractionBox["148918451", "3680081341"],
+           ",",
+           FractionBox["2098396355", "180323985709"],
+           ",",
+           FractionBox["1399630368785", "524201826456063"]
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{"N", "[", RowBox[{"redWeights", ",", "10"}], "]"}]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           "0.86046511627906976744186046511627906977`10.",
+           ",",
+           "0.70357119194328496654078049426886636189`10.",
+           ",",
+           "0.46989938974105228434768266534718786079`10.",
+           ",",
+           "0.25580189844944801620635596447708802863`10.",
+           ",",
+           "0.11313243003319814224376963134825461833`10.",
+           ",",
+           "0.04046607593720575862673574529558204132`10.",
+           ",",
+           "0.01163681218973449459581454642080745158`10.",
+           ",",
+           "0.00267002192313481523749855605871295845`10."
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[BoxData["blueWeights"], "Input"],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           "1",
+           ",",
+           FractionBox["1517", "1677"],
+           ",",
+           FractionBox["259", "387"],
+           ",",
+           FractionBox["105413", "260709"],
+           ",",
+           FractionBox["466829", "2346381"],
+           ",",
+           FractionBox["148918451", "1874758419"],
+           ",",
+           FractionBox["4616471981", "180323985709"],
+           ",",
+           FractionBox["60853494295", "9196523271159"],
+           ",",
+           FractionBox["4198891106355", "3086966311352371"]
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{"N", "[", RowBox[{"blueWeights", ",", "10"}], "]"}]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           "1.`10.",
+           ",",
+           "0.90459153249850924269528920691711389386`10.",
+           ",",
+           "0.66925064599483204134366925064599483204`10.",
+           ",",
+           "0.40433203303299847722940136320571978719`10.",
+           ",",
+           "0.19895703212734845704938797237106846671`10.",
+           ",",
+           "0.07943340832118167434137016669132771074`10.",
+           ",",
+           "0.02560098681741588811079200212577639349`10.",
+           ",",
+           "0.00661701085298628124075729110202776659`10.",
+           ",",
+           "0.00136019984763471719646152855821226185`10."
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[
+       {
+        "AppendTo",
+        "[",
+        RowBox[
+         {
+          "redWeights",
+          ",",
+          FractionBox[
+           RowBox[
+            {
+             RowBox[
+              {
+               "-",
+               RowBox[
+                {
+                 "(",
+                 RowBox[{"1", "+", RowBox[{"bias", "[", "1", "]"}]}],
+                 ")"
+                }
+               ]
+              }
+             ],
+             "*",
+             RowBox[
+              {
+               "(",
+               RowBox[{"1", "-", RowBox[{"bias", "[", "3", "]"}]}],
+               ")"
+              }
+             ],
+             "*",
+             RowBox[{"blueWeights", "[", RowBox[{"[", "9", "]"}], "]"}]
+            }
+           ],
+           RowBox[
+            {
+             "2",
+             "*",
+             RowBox[
+              {
+               "(",
+               RowBox[
+                {
+                 RowBox[{"bias", "[", "1", "]"}],
+                 "+",
+                 RowBox[{"bias", "[", "3", "]"}]
+                }
+               ],
+               ")"
+              }
+             ]
+            }
+           ]
+          ]
+         }
+        ],
+        "]"
+       }
+      ],
+      ";"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{"N", "[", RowBox[{"redWeights", ",", "10"}], "]"}]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "{",
+         RowBox[
+          {
+           "0.86046511627906976744186046511627906977`10.",
+           ",",
+           "0.70357119194328496654078049426886636189`10.",
+           ",",
+           "0.46989938974105228434768266534718786079`10.",
+           ",",
+           "0.25580189844944801620635596447708802863`10.",
+           ",",
+           "0.11313243003319814224376963134825461833`10.",
+           ",",
+           "0.04046607593720575862673574529558204132`10.",
+           ",",
+           "0.01163681218973449459581454642080745158`10.",
+           ",",
+           "0.00267002192313481523749855605871295845`10.",
+           ",",
+           "0.00057758486177135969187980348703498619`10."
+          }
+         ],
+         "}"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[
+       {
+        "greenWeight",
+        "=",
+        FractionBox[
+         RowBox[
+          {
+           RowBox[
+            {
+             "-",
+             RowBox[
+              {
+               "(",
+               RowBox[{"1", "+", RowBox[{"bias", "[", "1", "]"}]}],
+               ")"
+              }
+             ]
+            }
+           ],
+           "*",
+           RowBox[
+            {
+             "(",
+             RowBox[{"1", "+", RowBox[{"bias", "[", "3", "]"}]}],
+             ")"
+            }
+           ],
+           "*",
+           RowBox[{"blueWeights", "[", RowBox[{"[", "9", "]"}], "]"}]
+          }
+         ],
+         RowBox[
+          {
+           "2",
+           "*",
+           RowBox[
+            {
+             "(",
+             RowBox[
+              {
+               RowBox[{"bias", "[", "1", "]"}],
+               "+",
+               RowBox[{"bias", "[", "3", "]"}]
+              }
+             ],
+             ")"
+            }
+           ]
+          }
+         ]
+        ]
+       }
+      ],
+      ";"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{"N", "[", RowBox[{"greenWeight", ",", "10"}], "]"}]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.00026253857353243622358172885774317554`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Do",
+      "[",
+      RowBox[
+       {
+        RowBox[
+         {
+          "(",
+          "\[IndentingNewLine]",
+          RowBox[
+           {
+            RowBox[
+             {
+              "AssociateTo",
+              "[",
+              RowBox[
+               {
+                "weights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[
+                   {
+                    "{",
+                    RowBox[
+                     {
+                      RowBox[
+                       {"{", RowBox[{"0", ",", RowBox[{"10", "-", "i"}]}], "}"}
+                      ],
+                      ",",
+                      RowBox[
+                       {"{", RowBox[{"1", ",", RowBox[{"12", "-", "i"}]}], "}"}
+                      ]
+                     }
+                    ],
+                    "}"
+                   }
+                  ],
+                  "->",
+                  RowBox[{"redWeights", "[", RowBox[{"[", "i", "]"}], "]"}]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";",
+            RowBox[
+             {
+              "AssociateTo",
+              "[",
+              RowBox[
+               {
+                "weights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[
+                   {
+                    "{",
+                    RowBox[
+                     {
+                      RowBox[
+                       {"{", RowBox[{"0", ",", RowBox[{"9", "+", "i"}]}], "}"}
+                      ],
+                      ",",
+                      RowBox[
+                       {"{", RowBox[{"1", ",", RowBox[{"11", "+", "i"}]}], "}"}
+                      ]
+                     }
+                    ],
+                    "}"
+                   }
+                  ],
+                  "->",
+                  RowBox[{"redWeights", "[", RowBox[{"[", "i", "]"}], "]"}]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";"
+           }
+          ],
+          "\[IndentingNewLine]",
+          ")"
+         }
+        ],
+        ",",
+        RowBox[{"{", RowBox[{"i", ",", "9"}], "}"}]
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Do",
+      "[",
+      RowBox[
+       {
+        RowBox[
+         {
+          "(",
+          "\[IndentingNewLine]",
+          RowBox[
+           {
+            RowBox[
+             {
+              "AssociateTo",
+              "[",
+              RowBox[
+               {
+                "weights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[
+                   {
+                    "{",
+                    RowBox[
+                     {
+                      RowBox[
+                       {"{", RowBox[{"1", ",", RowBox[{"12", "-", "i"}]}], "}"}
+                      ],
+                      ",",
+                      RowBox[
+                       {"{", RowBox[{"0", ",", RowBox[{"9", "-", "i"}]}], "}"}
+                      ]
+                     }
+                    ],
+                    "}"
+                   }
+                  ],
+                  "->",
+                  RowBox[
+                   {
+                    "blueWeights",
+                    "[",
+                    RowBox[{"[", RowBox[{"i", "+", "1"}], "]"}],
+                    "]"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";",
+            "\[IndentingNewLine]",
+            RowBox[
+             {
+              "AssociateTo",
+              "[",
+              RowBox[
+               {
+                "weights",
+                ",",
+                RowBox[
+                 {
+                  RowBox[
+                   {
+                    "{",
+                    RowBox[
+                     {
+                      RowBox[
+                       {"{", RowBox[{"1", ",", RowBox[{"12", "+", "i"}]}], "}"}
+                      ],
+                      ",",
+                      RowBox[
+                       {"{", RowBox[{"0", ",", RowBox[{"9", "+", "i"}]}], "}"}
+                      ]
+                     }
+                    ],
+                    "}"
+                   }
+                  ],
+                  "->",
+                  RowBox[
+                   {
+                    "blueWeights",
+                    "[",
+                    RowBox[{"[", RowBox[{"i", "+", "1"}], "]"}],
+                    "]"
+                   }
+                  ]
+                 }
+                ]
+               }
+              ],
+              "]"
+             }
+            ],
+            ";"
+           }
+          ],
+          "\[IndentingNewLine]",
+          ")"
+         }
+        ],
+        ",",
+        RowBox[{"{", RowBox[{"i", ",", "8"}], "}"}]
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    {
+     RowBox[
+      {
+       RowBox[
+        {
+         "AssociateTo",
+         "[",
+         RowBox[
+          {
+           "weights",
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "3"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "1"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "->",
+             "greenWeight"
+            }
+           ]
+          }
+         ],
+         "]"
+        }
+       ],
+       ";"
+      }
+     ],
+     "\[IndentingNewLine]",
+     RowBox[
+      {
+       RowBox[
+        {
+         "AssociateTo",
+         "[",
+         RowBox[
+          {
+           "weights",
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "20"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "18"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "->",
+             "greenWeight"
+            }
+           ]
+          }
+         ],
+         "]"
+        }
+       ],
+       ";"
+      }
+     ]
+    }
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[BoxData["weights"], "Input"],
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "\[LeftAssociation]",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "12"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "9"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             "1"
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "9"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "11"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["37", "43"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "10"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "12"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["37", "43"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "8"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "10"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["10619", "15093"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "11"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "13"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["10619", "15093"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "7"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "9"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["2849", "6063"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "12"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "14"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["2849", "6063"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "6"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "8"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["466829", "1824963"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "13"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "15"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["466829", "1824963"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "5"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "7"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["13538041", "119665431"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "14"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "16"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["13538041", "119665431"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "4"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "6"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["148918451", "3680081341"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "15"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "17"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["148918451", "3680081341"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "3"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "5"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["2098396355", "180323985709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "16"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "18"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["2098396355", "180323985709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "2"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "4"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["1399630368785", "524201826456063"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "17"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "19"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["1399630368785", "524201826456063"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "1"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "3"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["138563406509715", "239901381910812832"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"0", ",", "18"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"1", ",", "20"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["138563406509715", "239901381910812832"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "11"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "8"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["1517", "1677"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "13"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "10"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["1517", "1677"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "10"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "7"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["259", "387"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "14"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "11"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["259", "387"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "9"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "6"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["105413", "260709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "15"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "12"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["105413", "260709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "8"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "5"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["466829", "2346381"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "16"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "13"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["466829", "2346381"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "7"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "4"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["148918451", "1874758419"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "17"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "14"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["148918451", "1874758419"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "6"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "3"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["4616471981", "180323985709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "18"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "15"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["4616471981", "180323985709"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "5"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "2"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["60853494295", "9196523271159"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "19"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "16"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["60853494295", "9196523271159"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "4"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "1"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["4198891106355", "3086966311352371"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "20"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "17"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["4198891106355", "3086966311352371"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "3"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "1"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["62983366595325", "239901381910812832"]
+            }
+           ],
+           ",",
+           RowBox[
+            {
+             RowBox[
+              {
+               "{",
+               RowBox[
+                {
+                 RowBox[{"{", RowBox[{"1", ",", "20"}], "}"}],
+                 ",",
+                 RowBox[{"{", RowBox[{"0", ",", "18"}], "}"}]
+                }
+               ],
+               "}"
+              }
+             ],
+             "\[Rule]",
+             FractionBox["62983366595325", "239901381910812832"]
+            }
+           ]
+          }
+         ],
+         "\[RightAssociation]"
+        }
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"calcOutDeg", "[", "v_", "]"}],
+      ":=",
+      RowBox[
+       {
+        "Total",
+        "[",
+        RowBox[
+         {
+          "Values",
+          "[",
+          RowBox[
+           {
+            "KeySelect",
+            "[",
+            RowBox[
+             {
+              "weights",
+              ",",
+              RowBox[
+               {
+                RowBox[
+                 {
+                  RowBox[{"#", "[", RowBox[{"[", "1", "]"}], "]"}],
+                  "==",
+                  "v"
+                 }
+                ],
+                "&"
+               }
+              ]
+             }
+            ],
+            "]"
+           }
+          ],
+          "]"
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"calcInDeg", "[", "v_", "]"}],
+      ":=",
+      RowBox[
+       {
+        "Total",
+        "[",
+        RowBox[
+         {
+          "Values",
+          "[",
+          RowBox[
+           {
+            "KeySelect",
+            "[",
+            RowBox[
+             {
+              "weights",
+              ",",
+              RowBox[
+               {
+                RowBox[
+                 {
+                  RowBox[{"#", "[", RowBox[{"[", "2", "]"}], "]"}],
+                  "==",
+                  "v"
+                 }
+                ],
+                "&"
+               }
+              ]
+             }
+            ],
+            "]"
+           }
+          ],
+          "]"
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"calcBias", "[", "v_", "]"}],
+      ":=",
+      FractionBox[
+       RowBox[
+        {
+         RowBox[{"calcOutDeg", "[", "v", "]"}],
+         "-",
+         RowBox[{"calcInDeg", "[", "v", "]"}]
+        }
+       ],
+       RowBox[
+        {
+         RowBox[{"calcOutDeg", "[", "v", "]"}],
+         "+",
+         RowBox[{"calcInDeg", "[", "v", "]"}]
+        }
+       ]
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      " ",
+      RowBox[
+       {
+        "assert",
+        " ",
+        "that",
+        " ",
+        "the",
+        " ",
+        "calculated",
+        " ",
+        "graph",
+        " ",
+        "has",
+        " ",
+        "the",
+        " ",
+        "correct",
+        " ",
+        "biases",
+        " ",
+        "at",
+        " ",
+        "every",
+        " ",
+        "vertex"
+       }
+      ],
+      " ",
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Do",
+      "[",
+      "\[IndentingNewLine]",
+      RowBox[
+       {
+        RowBox[
+         {
+          "Assert",
+          "[",
+          RowBox[
+           {
+            RowBox[
+             {
+              "calcBias",
+              "[",
+              RowBox[{"{", RowBox[{"0", ",", "i"}], "}"}],
+              "]"
+             }
+            ],
+            "==",
+            RowBox[{"bias", "[", "i", "]"}]
+           }
+          ],
+          "]"
+         }
+        ],
+        ",",
+        "\[IndentingNewLine]",
+        RowBox[{"{", RowBox[{"i", ",", "1", ",", "18"}], "}"}]
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Do",
+      "[",
+      "\[IndentingNewLine]",
+      RowBox[
+       {
+        RowBox[
+         {
+          "Assert",
+          "[",
+          RowBox[
+           {
+            RowBox[
+             {
+              "calcBias",
+              "[",
+              RowBox[{"{", RowBox[{"1", ",", "i"}], "}"}],
+              "]"
+             }
+            ],
+            "==",
+            RowBox[{"bias", "[", "i", "]"}]
+           }
+          ],
+          "]"
+         }
+        ],
+        ",",
+        "\[IndentingNewLine]",
+        RowBox[{"{", RowBox[{"i", ",", "3", ",", "20"}], "}"}]
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      " ",
+      RowBox[{"value", " ", "of", " ", "planted", " ", "cut"}],
+      " ",
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "cutValue",
+         "=",
+         RowBox[
+          {
+           "Total",
+           "[",
+           RowBox[
+            {
+             "Values",
+             "[",
+             RowBox[
+              {
+               "KeySelect",
+               "[",
+               "\[IndentingNewLine]",
+               RowBox[
+                {
+                 "weights",
+                 ",",
+                 RowBox[
+                  {
+                   RowBox[
+                    {
+                     RowBox[
+                      {
+                       RowBox[
+                        {
+                         RowBox[{"#", "[", RowBox[{"[", "1", "]"}], "]"}],
+                         "[",
+                         RowBox[{"[", "1", "]"}],
+                         "]"
+                        }
+                       ],
+                       "==",
+                       "1"
+                      }
+                     ],
+                     "&&",
+                     RowBox[
+                      {
+                       RowBox[
+                        {
+                         RowBox[{"#", "[", RowBox[{"[", "2", "]"}], "]"}],
+                         "[",
+                         RowBox[{"[", "1", "]"}],
+                         "]"
+                        }
+                       ],
+                       "==",
+                       "0"
+                      }
+                     ]
+                    }
+                   ],
+                   "&"
+                  }
+                 ]
+                }
+               ],
+               "\[IndentingNewLine]",
+               "]"
+              }
+             ],
+             "]"
+            }
+           ],
+           "]"
+          }
+         ]
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       FractionBox[
+        "234967160149669369235",
+        "42102692525347652016"
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[{"N", "[", RowBox[{"cutValue", ",", "10"}], "]"}]
+      ],
+      "Input"
+     ],
+     Cell[BoxData["5.5808107761328784309`10."], "Output"]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"trunc", "[", "x_", "]"}],
+      ":=",
+      RowBox[
+       {
+        "If",
+        "[",
+        RowBox[
+         {
+          RowBox[{"x", ">=", "1"}],
+          ",",
+          "1",
+          ",",
+          RowBox[
+           {
+            "If",
+            "[",
+            RowBox[{RowBox[{"x", "<=", "0"}], ",", "0", ",", "x"}],
+            "]"
+           }
+          ]
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[
+       {"PLsigmoid", "[", RowBox[{"idx_", ",", "b_"}], "]"}
+      ],
+      ":=",
+      RowBox[
+       {
+        "trunc",
+        "[",
+        RowBox[
+         {
+          RowBox[
+           {
+            "(",
+            RowBox[{RowBox[{"bias", "[", "idx", "]"}], "+", "b"}],
+            ")"
+           }
+          ],
+          "/",
+          RowBox[{"(", RowBox[{"2", "*", "b"}], ")"}]
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[{"PLsigmoidVal", "[", "b_", "]"}],
+      ":=",
+      RowBox[
+       {
+        "Sum",
+        "[",
+        "\[IndentingNewLine]",
+        RowBox[
+         {
+          RowBox[
+           {
+            RowBox[{"weights", "[", "edge", "]"}],
+            "*",
+            RowBox[
+             {
+              "PLsigmoid",
+              "[",
+              RowBox[
+               {
+                RowBox[
+                 {
+                  RowBox[{"edge", "[", RowBox[{"[", "1", "]"}], "]"}],
+                  "[",
+                  RowBox[{"[", "2", "]"}],
+                  "]"
+                 }
+                ],
+                ",",
+                "b"
+               }
+              ],
+              "]"
+             }
+            ],
+            "*",
+            RowBox[
+             {
+              "(",
+              RowBox[
+               {
+                "1",
+                "-",
+                RowBox[
+                 {
+                  "PLsigmoid",
+                  "[",
+                  RowBox[
+                   {
+                    RowBox[
+                     {
+                      RowBox[{"edge", "[", RowBox[{"[", "2", "]"}], "]"}],
+                      "[",
+                      RowBox[{"[", "2", "]"}],
+                      "]"
+                     }
+                    ],
+                    ",",
+                    "b"
+                   }
+                  ],
+                  "]"
+                 }
+                ]
+               }
+              ],
+              ")"
+             }
+            ]
+           }
+          ],
+          ",",
+          "\[IndentingNewLine]",
+          RowBox[
+           {
+            "{",
+            RowBox[
+             {"edge", ",", RowBox[{"Keys", "[", "weights", "]"}]}
+            ],
+            "}"
+           }
+          ]
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "20", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"1", "/", "2"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48589494041780077892720745064720848795`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "19", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "20", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48586933585919612045670012360084605689`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "18", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "19", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.4854875198234895494237247792248701382`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "17", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "18", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48437452393495895265916918576210424544`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "16", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "17", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48201803088261214001751226613843157201`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[{"PLsigmoidVal", "[", "b", "]"}],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "15", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "16", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.47773879040155740575920622022105280595`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "(*",
+      " ",
+      RowBox[
+       {
+        RowBox[
+         {
+          "PL",
+          " ",
+          "sigmoid",
+          " ",
+          "assignment",
+          " ",
+          "probability",
+          " ",
+          "to",
+          " ",
+          "a",
+          " ",
+          "vertex",
+          " ",
+          "of",
+          " ",
+          "bias",
+          " ",
+          RowBox[{"`bias", "[", "idx", "]"}],
+          "`",
+          " ",
+          "assuming",
+          " ",
+          "intercept",
+          " ",
+          "is",
+          " ",
+          "`b`",
+          " ",
+          "and",
+          "\[IndentingNewLine]",
+          RowBox[{"`bias", "[", "idxCut", "]"}]
+         }
+        ],
+        "<=",
+        "b",
+        "<",
+        RowBox[
+         {
+          RowBox[{"bias", "[", RowBox[{"idxCut", "+", "1"}], "]"}],
+          "`"
+         }
+        ]
+       }
+      ],
+      " ",
+      "*)"
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[
+       {
+        "PLsigmoidRes",
+        "[",
+        RowBox[{"idxCut_", ",", "idx_", ",", "b_"}],
+        "]"
+       }
+      ],
+      ":=",
+      RowBox[
+       {
+        "If",
+        "[",
+        "\[IndentingNewLine]",
+        RowBox[
+         {
+          RowBox[{"idx", ">=", RowBox[{"idxCut", "+", "1"}]}],
+          ",",
+          "1",
+          ",",
+          RowBox[
+           {
+            "If",
+            "[",
+            "\[IndentingNewLine]",
+            RowBox[
+             {
+              RowBox[
+               {"idx", "<", RowBox[{"22", "-", "idxCut", "-", "1"}]}
+              ],
+              ",",
+              "0",
+              ",",
+              "\[IndentingNewLine]",
+              RowBox[
+               {
+                RowBox[
+                 {
+                  "(",
+                  RowBox[{RowBox[{"bias", "[", "idx", "]"}], "+", "b"}],
+                  ")"
+                 }
+                ],
+                "/",
+                RowBox[{"(", RowBox[{"2", "*", "b"}], ")"}]
+               }
+              ]
+             }
+            ],
+            "]"
+           }
+          ]
+         }
+        ],
+        "\[IndentingNewLine]",
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      RowBox[
+       {
+        "PLsigmoidValRes",
+        "[",
+        RowBox[{"idxCut_", ",", "b_"}],
+        "]"
+       }
+      ],
+      ":=",
+      RowBox[
+       {
+        "Sum",
+        "[",
+        "\[IndentingNewLine]",
+        RowBox[
+         {
+          RowBox[
+           {
+            RowBox[{"weights", "[", "edge", "]"}],
+            "*",
+            RowBox[
+             {
+              "PLsigmoidRes",
+              "[",
+              RowBox[
+               {
+                "idxCut",
+                ",",
+                RowBox[
+                 {
+                  RowBox[{"edge", "[", RowBox[{"[", "1", "]"}], "]"}],
+                  "[",
+                  RowBox[{"[", "2", "]"}],
+                  "]"
+                 }
+                ],
+                ",",
+                "b"
+               }
+              ],
+              "]"
+             }
+            ],
+            "*",
+            RowBox[
+             {
+              "(",
+              RowBox[
+               {
+                "1",
+                "-",
+                RowBox[
+                 {
+                  "PLsigmoidRes",
+                  "[",
+                  RowBox[
+                   {
+                    "idxCut",
+                    ",",
+                    RowBox[
+                     {
+                      RowBox[{"edge", "[", RowBox[{"[", "2", "]"}], "]"}],
+                      "[",
+                      RowBox[{"[", "2", "]"}],
+                      "]"
+                     }
+                    ],
+                    ",",
+                    "b"
+                   }
+                  ],
+                  "]"
+                 }
+                ]
+               }
+              ],
+              ")"
+             }
+            ]
+           }
+          ],
+          ",",
+          "\[IndentingNewLine]",
+          RowBox[
+           {
+            "{",
+            RowBox[
+             {"edge", ",", RowBox[{"Keys", "[", "weights", "]"}]}
+            ],
+            "}"
+           }
+          ]
+         }
+        ],
+        "]"
+       }
+      ]
+     }
+    ]
+   ],
+   "Input"
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"20", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "20", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"1", "/", "2"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48589494041780077892720745064720848795`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"19", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "19", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "20", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48586933585919612045670012360084605689`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"18", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "18", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "19", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.4854875198234895494237247792248701382`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"17", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "17", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "18", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48437452393495895265916918576210424544`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"16", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "16", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "17", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.48201803088261214001751226613843157201`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         "N",
+         "[",
+         RowBox[
+          {
+           RowBox[
+            {
+             RowBox[
+              {
+               "MaxValue",
+               "[",
+               RowBox[
+                {
+                 RowBox[
+                  {
+                   "{",
+                   RowBox[
+                    {
+                     RowBox[
+                      {"PLsigmoidValRes", "[", RowBox[{"15", ",", "b"}], "]"}
+                     ],
+                     ",",
+                     RowBox[
+                      {
+                       RowBox[{"bias", "[", "15", "]"}],
+                       "<=",
+                       "b",
+                       "<=",
+                       RowBox[{"bias", "[", "16", "]"}]
+                      }
+                     ]
+                    }
+                   ],
+                   "}"
+                  }
+                 ],
+                 ",",
+                 "b"
+                }
+               ],
+               "]"
+              }
+             ],
+             "/",
+             "cutValue"
+            }
+           ],
+           ",",
+           "10"
+          }
+         ],
+         "]"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData["0.47773879040155740575920622022105280595`10."],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   CellGroupData[
+    {
+     Cell[
+      BoxData[
+       RowBox[
+        {
+         RowBox[
+          {"PLsigmoidValRes", "[", RowBox[{"20", ",", "b"}], "]"}
+         ],
+         "//",
+         "Simplify"
+        }
+       ]
+      ],
+      "Input"
+     ],
+     Cell[
+      BoxData[
+       FractionBox[
+        RowBox[
+         {
+          "253",
+          " ",
+          RowBox[
+           {
+            "(",
+            RowBox[
+             {
+              RowBox[{"-", "1491578805459006094"}],
+              "+",
+              RowBox[{"6036225105073670455", " ", "b"}],
+              "+",
+              RowBox[
+               {"183423199199462007200", " ", SuperscriptBox["b", "2"]}
+              ]
+             }
+            ],
+            ")"
+           }
+          ]
+         }
+        ],
+        RowBox[
+         {"17683130860646013846720", " ", SuperscriptBox["b", "2"]}
+        ]
+       ]
+      ],
+      "Output"
+     ]
+    },
+    Open
+   ]
+  ],
+  Cell[
+   BoxData[
+    RowBox[
+     {
+      "Assert",
+      "[",
+      RowBox[
+       {
+        "Simplify",
+        "[",
+        RowBox[
+         {
+          RowBox[
+           {
+            RowBox[
+             {"PLsigmoidValRes", "[", RowBox[{"20", ",", "b"}], "]"}
+            ],
+            "==",
+            RowBox[{"PLsigmoidVal", "[", "b", "]"}]
+           }
+          ],
+          ",",
+          RowBox[
+           {
+            RowBox[{"bias", "[", "20", "]"}],
+            "<=",
+            "b",
+            "<",
+            RowBox[{"1", "/", "2"}]
+           }
+          ]
+         }
+        ],
+        "]"
+       }
+      ],
+      "]"
+     }
+    ]
+   ],
+   "Input"
+  ]
+ },
+ TaggingRules -> <|"TryRealOnly" -> False|>,
+ FrontEndVersion -> "13.1 for Mac OS X ARM (64-bit) (June 16, 2022)",
+ StyleDefinitions -> "Default.nb",
+ ExpressionUUID -> "d09b64e4-f5a5-4681-b484-faa05576ff8e"
+]
